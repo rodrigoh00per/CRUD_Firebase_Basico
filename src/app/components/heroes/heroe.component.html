@@ -1,0 +1,39 @@
+<h3 *ngIf="id=='nuevo'">Registro de un nuevo heroe</h3>
+<h3 *ngIf="id!='nuevo'">Edicion de un Heroe</h3>
+<form #formaheroe="ngForm" (ngSubmit)="guardar(formaheroe)">
+  <div class="form-group m-2">
+    <label for="nombre">Nombre del Heroe</label> 
+    <input
+      class="form-control"
+      #nombre="ngModel"
+      name="nombre"
+      [(ngModel)]="heroe.nombre">
+  </div>
+  <br >
+  <div class="form-group m-2">
+    <label for="casa">A que casa de superheroes pertenece</label>
+    <select
+      class="form-control"
+      #casa="ngModel"
+      name="casa"
+      [(ngModel)]="heroe.casa"
+    >
+      <option value="DC">DC</option>
+      <option value="MARVEL">MARVEL</option>
+    </select>
+  </div>
+  <br />
+  <div class="form-group m-2">
+    <label>Biografia </label>
+    <textarea
+      #bio="ngModel"
+      name="bio"
+      [(ngModel)]="heroe.bio"
+      class="form-control"
+      rows="4"
+      required
+    >
+    </textarea>
+  </div>
+  <input type="submit" [disabled]="!formaheroe.valid" class="btn btn-primary mb-2" value="Guardar Cambios" />
+</form>

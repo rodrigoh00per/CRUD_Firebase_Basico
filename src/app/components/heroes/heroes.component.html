@@ -1,0 +1,48 @@
+<h1>Heroes</h1>
+<br />
+<div class="m-2">
+  <button
+    type="button"
+    [routerLink]="['/heroe', 'nuevo']"
+    routerLinkActive="router-link-active"
+    class="btn btn-outline-primary"
+    name="button"
+  >
+    Nuevo Heroe
+  </button>
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Casa</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr let *ngFor="let i of heroes|keys;let ind=index;">
+     
+       
+        <td>{{ind+1}}</td>
+        <td>{{heroes[i].nombre}}</td>
+        <td>{{heroes[i].casa}}</td>
+        <td><input class="btn btn-dark" type="button" [routerLink]="['/heroe',i]"  value="Editar "></td>
+        <td><button class="btn btn-danger" (click)="eliminarHeroe(i)" >Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+ 
+</div>
+
+  <div class="alert alert-info" *ngIf="(heroes|keys).length==0&&!loading">
+    <strong >No hay registros para mostrar</strong>
+  
+</div>
+<div class="alert alert-warning" *ngIf="loading">
+  <strong >Cargando por favor espere</strong>
+
+</div>
+
